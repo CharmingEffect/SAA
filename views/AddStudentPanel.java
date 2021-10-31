@@ -4,22 +4,27 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import controllers.Controller;
+import controllers.StudentController;
+import entity.Student;
 
 import java.awt.*;
+import java.util.List;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AddStudentPanel extends JPanel {
 
     JTextField studentIdFld, studentNameFld, emailAddressFld, yearOfStudyFld;
-
-    Controller controller;
-
+    ArrayList<Student> students = new ArrayList<Student>();
+    StudentController controller = new StudentController(students);
+    List<String> listA = new ArrayList<>(10);
+    
+  
     public AddStudentPanel() {
-
-        JLabel label = new JLabel("Fill up all fields below and click add");
+        this.setLayout(null);
+        JLabel label = new JLabel("     Fill up all fields below and click add");
         studentIdFld = new JTextField();
         studentNameFld = new JTextField();
         emailAddressFld = new JTextField();
@@ -29,44 +34,70 @@ public class AddStudentPanel extends JPanel {
         JLabel studentNameLbl = new JLabel("Student's Name:");
         JLabel emailAddressLbl = new JLabel("Email Address:");
         JLabel yearOfStudyLbl = new JLabel("Year of study:");
+        Font font = new Font("serif", Font.PLAIN, 15);
 
         JButton addBtn = new JButton("Add");
+        JButton testBtn = new JButton("TEST");
 
-        this.setLayout(null);
-        Font font = new Font("serif", Font.PLAIN, 20);
-        // below is created somple layout all the numbers in bracets indicates the
-        // postion of compinents
-        label.setBounds(140, 100, 300, 40);
+        // loop for list (scroll pane) of modules  
+        for (int index = 0; index < 20; index++){
+            listA.add("List Item" + index);
+
+
+        }
+        final JList<String> list = new JList<String>(listA.toArray(new String[listA.size()]));
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(list);
+        this.add(scrollPane);
+        scrollPane.setBounds(400, 190, 250, 200);
+        list.setFont(font);
+  
+
+
+        testBtn.setBounds(300, 480, 200, 40);
+        testBtn.setFont(font);
+
+
+       
+        
+        // below is created somple layout all the numbers in parameters of setBounds indicates the
+        // postion of components
+        label.setBounds(140, 100, 400, 50);
         label.setFont(font);
+        label.setIcon(new ImageIcon(getClass().getResource("/icons/person-plus-fill.png")));
 
-        studentIdLbl.setBounds(100, 170, 200, 40);
+        studentIdLbl.setBounds(50, 170, 200, 40);
         studentIdLbl.setFont(font);
 
-        studentIdFld.setBounds(300, 170, 200, 40);
+        studentIdFld.setBounds(150, 170, 200, 40);
         studentIdFld.setFont(font);
 
-        emailAddressFld.setBounds(300, 290, 200, 40);
+        emailAddressFld.setBounds(150, 290, 200, 40);
         emailAddressFld.setFont(font);
 
-        emailAddressLbl.setBounds(100, 290, 200, 40);
+        emailAddressLbl.setBounds(50, 290, 200, 40);
         emailAddressLbl.setFont(font);
 
-        studentNameFld.setBounds(300, 230, 200, 40);
+        studentNameFld.setBounds(150, 230, 200, 40);
         studentNameFld.setFont(font);
 
-        studentNameLbl.setBounds(100, 230, 200, 40);
+        studentNameLbl.setBounds(50, 230, 200, 40);
         studentNameLbl.setFont(font);
 
-        yearOfStudyFld.setBounds(300, 350, 200, 40);
+        yearOfStudyFld.setBounds(150, 350, 200, 40);
         yearOfStudyFld.setFont(font);
 
-        yearOfStudyLbl.setBounds(100, 350, 200, 40);
+        yearOfStudyLbl.setBounds(50, 350, 200, 40);
         yearOfStudyLbl.setFont(font);
 
         addBtn.setBounds(300, 420, 200, 40);
         addBtn.setFont(font);
 
+
+
+
         this.add(addBtn);
+        this.add(testBtn);
 
         this.add(label);
         label.setFont(font);
@@ -89,6 +120,17 @@ public class AddStudentPanel extends JPanel {
             }
         });
 
+
+        //test button listener, checking the array
+        testBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               
+                System.out.println(controller.getStudents().get(1).getEmailAddress()); // retreving info about student in this case email addres 
+
+
+            }
+        });
+
     }
 
     public void addButtonAction(ActionEvent e) {
@@ -106,8 +148,15 @@ public class AddStudentPanel extends JPanel {
             String studentName = studentNameFld.getText().trim();   
             String emailAddress = emailAddressFld.getText().trim();   
             int yearOfStudy = Integer.parseInt(yearOfStudyFld.getText().trim());
-      
             controller.addStudent(studentId, studentName, emailAddress, yearOfStudy);
+            this.setVisible(false);
+
+            //clear leftover data
+            studentIdFld.setText("");
+            studentNameFld.setText("");
+            emailAddressFld.setText("");
+            yearOfStudyFld.setText("");
+
 
         }
 

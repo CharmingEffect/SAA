@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
 
 import entity.Student;
 
-public class Controller {
+public class StudentController {
     
-    private ArrayList<Student> students = new ArrayList<Student>();
- 
-    public Controller(){
- 
+    ArrayList<Student> students;
+
+    public StudentController(ArrayList<Student> students){
+        this.students = students;
 
         populateArrayList();
 
@@ -92,7 +92,12 @@ public class Controller {
     
     }
 
+    public ArrayList<Student> getStudents() {
+        return this.students;
+    }
 
+
+ 
 
 
 }
