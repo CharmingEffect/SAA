@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 import controllers.Controller;
+import controllers.ModuleController;
 import controllers.StudentController;
 import entity.Module;
 import entity.Student;
@@ -40,7 +41,8 @@ public class AddStudentPanel extends JPanel {
         JLabel emailAddressLbl = new JLabel("Email Address:");
         JLabel yearOfStudyLbl = new JLabel("Year of study:");
         Font font = new Font("serif", Font.PLAIN, 15);
-        Controller moduleController = new Controller();
+        ModuleController moduleController = new ModuleController();
+
         List<String> listA = new ArrayList<>();
     
         JButton addBtn = new JButton("Add");
@@ -173,6 +175,13 @@ public class AddStudentPanel extends JPanel {
             studentNameFld.setText("");
             emailAddressFld.setText("");
             yearOfStudyFld.setText("");
+
+            Menu menu = new Menu();
+            menu.setLocationRelativeTo(null);
+            menu.setVisible(true);
+
+
+
 
         }
 

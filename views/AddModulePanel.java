@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import controllers.Controller;
+import controllers.ModuleController;
 import entity.Module;
 import java.awt.event.*;
 
@@ -17,8 +18,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class AddModulePanel extends JPanel {
+
     ArrayList<Module> modules = new ArrayList<Module>();
-    Controller controller = new Controller();
+    ModuleController controller = new ModuleController();
+
     JTextField moduleIdFld, moduleNameFld;
     
     public AddModulePanel() {
