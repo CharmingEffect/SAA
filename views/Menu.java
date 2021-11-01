@@ -10,15 +10,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.*;
 import java.awt.event.KeyEvent;
-
+import java.util.ArrayList;
 import java.awt.Container;
 import controllers.ImagePanel;
+import controllers.ModuleController;
+import entity.Module;
 
 public class Menu extends JFrame {
 
     JButton addStudentBtn, searchStudentButton, addModuleBtn; 
-    AddStudentPanel panel = new AddStudentPanel();
+    AddStudentPanel panel = new AddStudentPanel(); // zmienic na panelStudent
+    AddModulePanel panelAddModule = new AddModulePanel();
     JPanel menuPanel = new JPanel();
+    
     //ImagePanel imagePanel = new ImagePanel(new ImageIcon("icons/bg.png").getImage());
     public Menu(){
 
@@ -93,28 +97,41 @@ public class Menu extends JFrame {
     
 
        
-
-      
-
         addStudentBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                addButtonAction(e);
+                addStudentButtonAction(e);
+            }
+        });
+      
+
+        addModuleBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addModuleButtonAction(e);
             }
         });
         panel.setVisible(false);
-      
+        panelAddModule.setVisible(false);
         add(menuPanel);
         add(panel);
+        add(panelAddModule);
         //panel.setVisible(false);
         pack();
         
 
     }   
     
-    public void addButtonAction(ActionEvent e){
-
-       
+    public void addStudentButtonAction(ActionEvent e){
+   
         panel.setVisible(true);
+        panelAddModule.setVisible(false);
+        
+
+    }
+
+    public void addModuleButtonAction(ActionEvent e){
+   
+       panel.setVisible(false);
+       panelAddModule.setVisible(true);
         
 
     }

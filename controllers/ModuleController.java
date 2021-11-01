@@ -7,30 +7,27 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import entity.Module;
-import entity.Student;
 
-public class StudentController {
+public class ModuleController {
     
-    ArrayList<Student> students;
+    ArrayList<Module> modules;
 
-    public StudentController(){
-        this.students = new ArrayList<Student>();
+    public ModuleController(){
+        this.modules = new ArrayList<Module>();
 
         populateArrayList();
 
 
     }
 
-    public void addStudent(int id, String studentName, String emailAddress, int yearOfStudy, ArrayList<Module> modules){
+    public void addModule(String moduleCode, String moduleName){
 
-        Student student = new Student(id, studentName, emailAddress, yearOfStudy, modules);
+        Module module = new Module(moduleCode, moduleName);
 
-        students.add(student);
-        saveStudent();
+        modules.add(module);
+        saveModule();
 
     }
 
@@ -38,7 +35,7 @@ public class StudentController {
 
         try {
 
-            FileInputStream file = new FileInputStream("students.dat");
+            FileInputStream file = new FileInputStream("modules.dat");
             ObjectInputStream inputFile = new ObjectInputStream(file);
 
             boolean endOfFile = false;
@@ -47,7 +44,7 @@ public class StudentController {
 
                 try {
 
-                    students.add((Student) inputFile.readObject());
+                    modules.add((Module) inputFile.readObject());
 
                 } catch (EOFException e) {
 
@@ -68,21 +65,21 @@ public class StudentController {
 
     }
 
-    public void saveStudent() {
+    public void saveModule() {
 
         try {
-            FileOutputStream file = new FileOutputStream("students.dat"); // try to create a file if not created
+            FileOutputStream file = new FileOutputStream("modules.dat"); // try to create a file if not created
             ObjectOutputStream outputFile = new ObjectOutputStream(file);
     
-            for (int i = 0; i < students.size(); i++) {
+            for (int i = 0; i < modules.size(); i++) {
     
-                outputFile.writeObject(students.get(i));
+                outputFile.writeObject(modules.get(i));
     
             }
     
             outputFile.close();
     
-            JOptionPane.showMessageDialog(null, "The student has been sacessfully added");
+            JOptionPane.showMessageDialog(null, "The module has been sacessfully added");
            
     
         } catch (IOException e) {
@@ -93,8 +90,8 @@ public class StudentController {
     
     }
 
-    public ArrayList<Student> getStudents() {
-        return this.students;
+    public ArrayList<Module> getModules() {
+        return this.modules;
     }
 
 
