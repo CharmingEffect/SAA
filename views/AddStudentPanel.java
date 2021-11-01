@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-import controllers.ModuleController;
+import controllers.Controller;
 import controllers.StudentController;
 import entity.Module;
 import entity.Student;
@@ -40,7 +40,7 @@ public class AddStudentPanel extends JPanel {
         JLabel emailAddressLbl = new JLabel("Email Address:");
         JLabel yearOfStudyLbl = new JLabel("Year of study:");
         Font font = new Font("serif", Font.PLAIN, 15);
-        ModuleController moduleController = new ModuleController(modules);
+        Controller moduleController = new Controller();
         List<String> listA = new ArrayList<>();
     
         JButton addBtn = new JButton("Add");

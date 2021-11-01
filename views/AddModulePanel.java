@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import controllers.ModuleController;
+import controllers.Controller;
 import entity.Module;
 import java.awt.event.*;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class AddModulePanel extends JPanel {
     ArrayList<Module> modules = new ArrayList<Module>();
-    ModuleController controller = new ModuleController(modules);
+    Controller controller = new Controller();
     JTextField moduleIdFld, moduleNameFld;
     
     public AddModulePanel() {

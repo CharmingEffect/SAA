@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.Container;
 import controllers.ImagePanel;
-import controllers.ModuleController;
+import controllers.Controller;
 import entity.Module;
 
 public class Menu extends JFrame {
