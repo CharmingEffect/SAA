@@ -1,101 +1,68 @@
 package controllers;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.HashMap;
+
 import entity.Module;
+import entity.Student;
 
 public class Controller {
     
-    ArrayList<Module> modules;
+    private HashMap<Integer, Student> students;
+
+
+    private ArrayList<Module> allModules;
+    private static Integer id = 1;
+    private Student student;
 
     public Controller(){
-        this.modules = new ArrayList<Module>();
+        this.students = new HashMap<Integer, Student>();
+        this.allModules = new ArrayList<Module>();
 
-        populateArrayList();
+    }
 
+
+
+
+    public void addStudent(String studentName, String emailAddress, int yearOfStudy){
+        
+
+        Student student = new Student(studentName, emailAddress, yearOfStudy);
+
+        students.put(id,student);
+        id++;
+       
+    }
+
+    public void deleteStudent(Integer currentId, Student student ){
+        students.remove(currentId, student);
+
+
+    }
+
+    public HashMap<Integer, Student> getS(){
+   
+        return this.students;
+    }
+
+    public Student getStudent(Integer i){
+        return students.get(i);
 
     }
 
     public void addModule(String moduleCode, String moduleName){
-
         Module module = new Module(moduleCode, moduleName);
-
-        modules.add(module);
-        saveModule();
+        allModules.add(module);
 
     }
-
-    public void populateArrayList() {   //populate array list 
-
-        try {
-
-            FileInputStream file = new FileInputStream("modules.dat");
-            ObjectInputStream inputFile = new ObjectInputStream(file);
-
-            boolean endOfFile = false;
-
-            while (!endOfFile) {
-
-                try {
-
-                    modules.add((Module) inputFile.readObject());
-
-                } catch (EOFException e) {
-
-                    endOfFile = true;
-
-                } catch (Exception f) {
-
-                    JOptionPane.showMessageDialog(null, f.getMessage());
-                }
-            }
-            inputFile.close();
-
-        } catch (IOException e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        }
-
+    
+    public ArrayList<Module> getAllModules() {
+        return this.allModules;
     }
 
-    public void saveModule() {
-
-        try {
-            FileOutputStream file = new FileOutputStream("modules.dat"); // try to create a file if not created
-            ObjectOutputStream outputFile = new ObjectOutputStream(file);
-    
-            for (int i = 0; i < modules.size(); i++) {
-    
-                outputFile.writeObject(modules.get(i));
-    
-            }
-    
-            outputFile.close();
-    
-            JOptionPane.showMessageDialog(null, "The module has been sacessfully added");
-           
-    
-        } catch (IOException e) {
-    
-            JOptionPane.showMessageDialog(null, e.getMessage());
-    
-        }
-    
+    public void setAllModules(ArrayList<Module> allModules) {
+        this.allModules = allModules;
     }
-
-    public ArrayList<Module> getModules() {
-        return this.modules;
-    }
-
-
- 
 
 
 }
