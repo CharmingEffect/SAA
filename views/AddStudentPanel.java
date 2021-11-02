@@ -40,7 +40,7 @@ public class AddStudentPanel extends JPanel {
         JLabel emailAddressLbl = new JLabel("Email Address:");
         JLabel yearOfStudyLbl = new JLabel("Year of study:");
         Font font = new Font("serif", Font.PLAIN, 15);
-        ModuleController moduleController = new ModuleController(modules);
+        ModuleController moduleController = new ModuleController();
         List<String> listA = new ArrayList<>();
     
         JButton addBtn = new JButton("Add");

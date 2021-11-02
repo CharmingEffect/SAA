@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class AddModulePanel extends JPanel {
     ArrayList<Module> modules = new ArrayList<Module>();
-    ModuleController controller = new ModuleController(modules);
+    ModuleController controller = new ModuleController();
     JTextField moduleIdFld, moduleNameFld;
     
     public AddModulePanel() {
