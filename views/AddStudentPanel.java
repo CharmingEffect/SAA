@@ -1,19 +1,15 @@
 package views;
 
-import java.awt.Dimension;
+
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-
 import controllers.Controller;
-import controllers.ModuleController;
-import controllers.StudentController;
 import entity.Module;
 import entity.Student;
 
 import java.awt.*;
 import java.util.List;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,9 +19,9 @@ public class AddStudentPanel extends JPanel {
     JTextField studentIdFld, studentNameFld, emailAddressFld, yearOfStudyFld;
     
     ArrayList<Module> modules = new ArrayList<Module>();
-    StudentController controller = new StudentController();
-   
+    Module module = new Module("moduleCode", "moduleName");
 
+    Controller controller = new Controller();
 
     public AddStudentPanel() {
         this.setLayout(null);
@@ -41,12 +37,13 @@ public class AddStudentPanel extends JPanel {
         JLabel emailAddressLbl = new JLabel("Email Address:");
         JLabel yearOfStudyLbl = new JLabel("Year of study:");
         Font font = new Font("serif", Font.PLAIN, 15);
-        ModuleController moduleController = new ModuleController();
+      
 
         List<String> listA = new ArrayList<>();
     
         JButton addBtn = new JButton("Add");
         JButton testBtn = new JButton("TEST");
+        /*
         String[] modulesArray = new String[moduleController.getModules().size()];
         // loop for list (scroll pane) of modules
         for (int index = 0; index < moduleController.getModules().size(); index++) {
@@ -55,7 +52,7 @@ public class AddStudentPanel extends JPanel {
            
         }
 
-
+        */
        
 
         final JList<String> list = new JList<String>(listA.toArray(new String[listA.size()]));
@@ -142,9 +139,12 @@ public class AddStudentPanel extends JPanel {
         // test button listener, checking the array
         testBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                System.out.println(controller.getStudents().get(0).getEmailAddress()); // retreving info about student
-                                                                                       // in this case email addres
+            
+                for (int i = 1; i < controller.getS().size(); i++){
+                System.out.println(controller.getStudent(i).getEmailAddress());// retreving info about student
+                // in this case email addres
+             }
+            
 
             }
         });
@@ -162,12 +162,15 @@ public class AddStudentPanel extends JPanel {
 
         else {
 
-            int studentId = Integer.parseInt(studentIdFld.getText().trim());
+            //int studentId = Integer.parseInt(studentIdFld.getText().trim());
             String studentName = studentNameFld.getText().trim();
             String emailAddress = emailAddressFld.getText().trim();
             int yearOfStudy = Integer.parseInt(yearOfStudyFld.getText().trim());
             
-            controller.addStudent(studentId, studentName, emailAddress, yearOfStudy,modules); // modules ?
+
+            
+            
+            controller.addStudent(studentName, emailAddress, yearOfStudy); // modules ?
             this.setVisible(false);
 
             // clear leftover data
@@ -176,10 +179,7 @@ public class AddStudentPanel extends JPanel {
             emailAddressFld.setText("");
             yearOfStudyFld.setText("");
 
-            Menu menu = new Menu();
-            menu.setLocationRelativeTo(null);
-            menu.setVisible(true);
-
+           
 
 
 

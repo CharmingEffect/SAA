@@ -12,8 +12,8 @@ public class Controller {
 
 
     private ArrayList<Module> allModules;
-    private static Integer id = 1;
-    private Student student;
+    private static Integer studentId = 1;
+ 
 
     public Controller(){
         this.students = new HashMap<Integer, Student>();
@@ -29,8 +29,8 @@ public class Controller {
 
         Student student = new Student(studentName, emailAddress, yearOfStudy);
 
-        students.put(id,student);
-        id++;
+        students.put(studentId,student);
+        studentId++;
        
     }
 

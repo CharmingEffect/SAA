@@ -1,20 +1,8 @@
 package views;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.text.Position;
-
-import javafx.scene.layout.Background;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.*;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.awt.Container;
-import controllers.ImagePanel;
-import controllers.Controller;
-import entity.Module;
 
 public class Menu extends JFrame {
 
@@ -22,6 +10,7 @@ public class Menu extends JFrame {
     AddStudentPanel panel = new AddStudentPanel(); // zmienic na panelStudent
     AddModulePanel panelAddModule = new AddModulePanel();
     JPanel menuPanel = new JPanel();
+    
     
     //ImagePanel imagePanel = new ImagePanel(new ImageIcon("icons/bg.png").getImage());
     public Menu(){
@@ -135,6 +124,7 @@ public class Menu extends JFrame {
         
 
     }
+    
 
 }
 

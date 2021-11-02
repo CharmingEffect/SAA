@@ -5,42 +5,26 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 
 
 public class Student implements Serializable {
 
-    private int id;
+
     private String studentName;
     private String emailAddress;
     private int yearOfStudy;
-    private ArrayList<Module> modules;
+    private List<Module> modules = new ArrayList<>();
 
    
+    public Student(String studentName, String emailAddress, int yearOfStudy){
 
-   
-    public Student(int id, String studentName, String emailAddress, int yearOfStudy, ArrayList<Module> modules){
-        this.id = id;
         this.studentName = studentName;
         this.emailAddress = emailAddress;
         this.yearOfStudy = yearOfStudy;
-        this.modules = modules; 
+   
 
-    }
-
-    public ArrayList<Module> getStudentModules() {
-        return this.modules;
-    }
-
-    public void setStudentModules(ArrayList<Module> modules) {
-        this.modules = modules;
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -65,6 +49,14 @@ public class Student implements Serializable {
 
     public void setYearOfStudy(int yearOfStudy) {
         this.yearOfStudy = yearOfStudy;
+    }
+
+    public List<Module> getModules() {
+        return this.modules;
+    }
+
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
     }
 
    
