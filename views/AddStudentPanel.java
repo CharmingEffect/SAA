@@ -1,18 +1,11 @@
 package views;
-
-import java.awt.Dimension;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-
 import controllers.ModuleController;
 import controllers.StudentController;
 import entity.Module;
-import entity.Student;
-
 import java.awt.*;
 import java.util.List;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
