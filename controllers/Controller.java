@@ -2,16 +2,16 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import entity.Module;
 import entity.Student;
 
+
 public class Controller {
     
     private HashMap<Integer, Student> students;
-
-
-    private ArrayList<Module> allModules;
+    private List<Module> allModules;
     private static Integer studentId = 1;
  
 
@@ -20,8 +20,6 @@ public class Controller {
         this.allModules = new ArrayList<Module>();
 
     }
-
-
 
 
     public void addStudent(String studentName, String emailAddress, int yearOfStudy){
@@ -40,15 +38,17 @@ public class Controller {
 
     }
 
-    public HashMap<Integer, Student> getS(){
+    public HashMap<Integer, Student> getStudents(){
    
         return this.students;
     }
 
-    public Student getStudent(Integer i){
+    public Student getStudent(Integer i){  // usuwanie ma wygladac pdoobnnie 
         return students.get(i);
 
     }
+
+
 
     public void addModule(String moduleCode, String moduleName){
         Module module = new Module(moduleCode, moduleName);
@@ -56,11 +56,11 @@ public class Controller {
 
     }
     
-    public ArrayList<Module> getAllModules() {
+    public List<Module> getAllModules() {
         return this.allModules;
     }
 
-    public void setAllModules(ArrayList<Module> allModules) {
+    public void setAllModules(List<Module> allModules) {
         this.allModules = allModules;
     }
 

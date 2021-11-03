@@ -3,11 +3,12 @@ package views;
 
 
 import javax.swing.*;
+import javax.swing.DefaultListCellRenderer.UIResource;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.Utilities;
+
 import controllers.Controller;
 import entity.Module;
-import entity.Student;
-
 import java.awt.*;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -18,11 +19,10 @@ public class AddStudentPanel extends JPanel {
 
     JTextField studentIdFld, studentNameFld, emailAddressFld, yearOfStudyFld;
     
-    ArrayList<Module> modules = new ArrayList<Module>();
-    Module module = new Module("moduleCode", "moduleName");
-
-    Controller controller = new Controller();
-
+    List<String> listA = new ArrayList<>();
+    final JList<String> list = new JList<String>(listA.toArray(new String[listA.size()]));
+    String[] modulesArray = new String[Menu.getController().getAllModules().size()];
+    JScrollPane scrollPane = new JScrollPane();  
     public AddStudentPanel() {
         this.setLayout(null);
         JLabel label = new JLabel("     Fill up all fields below and click add.");
@@ -37,27 +37,20 @@ public class AddStudentPanel extends JPanel {
         JLabel emailAddressLbl = new JLabel("Email Address:");
         JLabel yearOfStudyLbl = new JLabel("Year of study:");
         Font font = new Font("serif", Font.PLAIN, 15);
-      
-
-        List<String> listA = new ArrayList<>();
-    
         JButton addBtn = new JButton("Add");
         JButton testBtn = new JButton("TEST");
-        /*
-        String[] modulesArray = new String[moduleController.getModules().size()];
+     
+        
         // loop for list (scroll pane) of modules
-        for (int index = 0; index < moduleController.getModules().size(); index++) {
-            modulesArray[index] = moduleController.getModules().get(index).getModuleName();
+    
+
+        for (int index = 0; index < Menu.getController().getAllModules().size(); index++) {
+            modulesArray[index] = Menu.getController().getAllModules().get(index).getModuleName();
             listA.add(modulesArray[index]);
            
         }
 
-        */
-       
-
-        final JList<String> list = new JList<String>(listA.toArray(new String[listA.size()]));
-
-        JScrollPane scrollPane = new JScrollPane();        
+              
         scrollPane.setViewportView(list);
         
         
@@ -137,13 +130,26 @@ public class AddStudentPanel extends JPanel {
         });
 
         // test button listener, checking the array
+        
         testBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             
-                for (int i = 1; i < controller.getS().size(); i++){
-                System.out.println(controller.getStudent(i).getEmailAddress());// retreving info about student
+                for (int i = 0; i < Menu.getController().getStudents().size(); i++){
+                System.out.println(Menu.getController().getStudent(i).getEmailAddress());// retreving info about student
+                System.out.println(Menu.getController().getAllModules().get(i));
+                   
                 // in this case email addres
              }
+
+             
+             for (int i = 0; i < Menu.getController().getAllModules().size(); i++){
+            
+                System.out.println(Menu.getController().getAllModules().get(i).getModuleName());
+                   
+                // in this case email addres
+             }
+
+             
             
 
             }
@@ -167,10 +173,10 @@ public class AddStudentPanel extends JPanel {
             String emailAddress = emailAddressFld.getText().trim();
             int yearOfStudy = Integer.parseInt(yearOfStudyFld.getText().trim());
             
-
             
             
-            controller.addStudent(studentName, emailAddress, yearOfStudy); // modules ?
+            
+            Menu.getController().addStudent(studentName, emailAddress, yearOfStudy); // modules ?
             this.setVisible(false);
 
             // clear leftover data

@@ -6,20 +6,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
-import controllers.Controller;
-import entity.Module;
 import java.awt.event.*;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 public class AddModulePanel extends JPanel {
-
-    ArrayList<Module> modules = new ArrayList<Module>();
-    Controller controller = new Controller();
 
     JTextField moduleIdFld, moduleNameFld;
     
@@ -89,22 +81,13 @@ public class AddModulePanel extends JPanel {
           
             String moduleId = moduleIdFld.getText().trim();
             String moduleName = moduleNameFld.getText().trim();
-            controller.addModule(moduleId, moduleName);
+            Menu.getController().addModule(moduleId, moduleName);
             this.setVisible(false);
 
             // clear leftover data
             moduleIdFld.setText("");
             moduleNameFld.setText("");
 
-            // the code below allow to see the changes without manually closing and opening the frame
-            //the question is how to make it without closing the frame 
-
-            SwingUtilities.getWindowAncestor(this).dispose();
-            Menu menu = new Menu();
-            menu.setVisible(true);
-            menu.setLocationRelativeTo(null);
-
-            
 
         }
 

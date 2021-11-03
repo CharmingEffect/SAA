@@ -1,6 +1,9 @@
 package views;
 import java.awt.*;
 import javax.swing.*;
+
+import controllers.Controller;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,11 +13,10 @@ public class Menu extends JFrame {
     AddStudentPanel panel = new AddStudentPanel(); // zmienic na panelStudent
     AddModulePanel panelAddModule = new AddModulePanel();
     JPanel menuPanel = new JPanel();
-    
-    
+    static Controller controller = new Controller();
+
     //ImagePanel imagePanel = new ImagePanel(new ImageIcon("icons/bg.png").getImage());
     public Menu(){
-
         initGui();
 
     }
@@ -124,6 +126,12 @@ public class Menu extends JFrame {
         
 
     }
+
+    public static Controller getController() {
+        return controller;
+    }
+
+
     
 
 }

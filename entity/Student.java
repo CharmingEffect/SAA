@@ -11,7 +11,6 @@ import java.util.List;
 
 public class Student implements Serializable {
 
-
     private String studentName;
     private String emailAddress;
     private int yearOfStudy;
@@ -23,6 +22,15 @@ public class Student implements Serializable {
         this.studentName = studentName;
         this.emailAddress = emailAddress;
         this.yearOfStudy = yearOfStudy;
+   
+
+    }
+
+    public Student(String studentName, String emailAddress, int yearOfStudy, List<Module> modules){
+        this.studentName = studentName;
+        this.emailAddress = emailAddress;
+        this.yearOfStudy = yearOfStudy;
+        this.modules = modules;
    
 
     }
