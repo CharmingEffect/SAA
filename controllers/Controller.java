@@ -11,7 +11,7 @@ import entity.Student;
 public class Controller {
     
     private HashMap<Integer, Student> students;
-    private List<Module> allModules;
+    private ArrayList<Module> allModules;
     private static Integer studentId = 1;
  
 
@@ -56,11 +56,11 @@ public class Controller {
 
     }
     
-    public List<Module> getAllModules() {
+    public ArrayList<Module> getAllModules() {
         return this.allModules;
     }
 
-    public void setAllModules(List<Module> allModules) {
+    public void setAllModules(ArrayList<Module> allModules) {
         this.allModules = allModules;
     }
 

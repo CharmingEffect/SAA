@@ -1,29 +1,47 @@
 package views;
 
 
-
 import javax.swing.*;
-import javax.swing.DefaultListCellRenderer.UIResource;
-import javax.swing.border.TitledBorder;
-import javax.swing.text.Utilities;
-
-import controllers.Controller;
 import entity.Module;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 public class AddStudentPanel extends JPanel {
 
     JTextField studentIdFld, studentNameFld, emailAddressFld, yearOfStudyFld;
+    JList displayerList = new JList();
+    DefaultListModel listModel = new DefaultListModel();
+    String[] moduleNames = new String[Menu.getController().getStudents().size()];
+    JScrollPane scrollPane = new JScrollPane();
     
-    List<String> listA = new ArrayList<>();
-    final JList<String> list = new JList<String>(listA.toArray(new String[listA.size()]));
-    String[] modulesArray = new String[Menu.getController().getAllModules().size()];
-    JScrollPane scrollPane = new JScrollPane();  
-    public AddStudentPanel() {
+    public AddStudentPanel(){
+
+        initGui();
+       
+        for (int i = 0; i < Menu.getController().getStudents().size(); i++){
+            moduleNames[i] = Menu.getController().getStudent(i).getName();
+            System.out.println(moduleNames[i]);
+           
+            listModel.addElement(moduleNames[i]);
+
+
+
+        }
+        displayerList.setModel(listModel);
+        displayerList.setSelectedIndex(0);
+
+
+
+    }
+
+
+    public void initGui() {
+
+
         this.setLayout(null);
         JLabel label = new JLabel("     Fill up all fields below and click add.");
         
@@ -39,29 +57,18 @@ public class AddStudentPanel extends JPanel {
         Font font = new Font("serif", Font.PLAIN, 15);
         JButton addBtn = new JButton("Add");
         JButton testBtn = new JButton("TEST");
-     
         
-        // loop for list (scroll pane) of modules
-    
-
-        for (int index = 0; index < Menu.getController().getAllModules().size(); index++) {
-            modulesArray[index] = Menu.getController().getAllModules().get(index).getModuleName();
-            listA.add(modulesArray[index]);
-           
-        }
-
-              
-        scrollPane.setViewportView(list);
-        
-        
-        
+       
+ 
         this.add(scrollPane);
+        scrollPane.setViewportView(displayerList);
+        
+      
         scrollPane.setBounds(400, 170, 250, 230);
-        list.setFont(font);
+        scrollPane.setFont(font);
 
-        TitledBorder title;
-        title = BorderFactory.createTitledBorder("Choose modules for the student (max 5): ");
-        scrollPane.setBorder(title);
+
+
 
         testBtn.setBounds(300, 480, 200, 40);
         testBtn.setFont(font);
@@ -136,15 +143,15 @@ public class AddStudentPanel extends JPanel {
             
                 for (int i = 0; i < Menu.getController().getStudents().size(); i++){
                 System.out.println(Menu.getController().getStudent(i).getEmailAddress());// retreving info about student
-                System.out.println(Menu.getController().getAllModules().get(i));
+                System.out.println(Menu.getController().getStudents().get(i));
                    
                 // in this case email addres
              }
 
              
              for (int i = 0; i < Menu.getController().getAllModules().size(); i++){
-            
-                System.out.println(Menu.getController().getAllModules().get(i).getModuleName());
+               
+                System.out.println(moduleNames[i]);
                    
                 // in this case email addres
              }
@@ -177,7 +184,7 @@ public class AddStudentPanel extends JPanel {
             
             
             Menu.getController().addStudent(studentName, emailAddress, yearOfStudy); // modules ?
-            this.setVisible(false);
+            //this.setVisible(false);
 
             // clear leftover data
             studentIdFld.setText("");
